@@ -46,4 +46,18 @@ const displayListOfUsers=async(idSubject:string)=>{
     const responseItem=await SubjectModel.findOne({_id:idSubject}).populate('users');
     console.log(responseItem);
 }
+const displaySubjectsOfUser=async(idUser:string)=>{
+    const usersInSubject: string[]=[];
+    const subjects=await getSubjects();
+    subjects.forEach(subject => {
+        subject.users?.forEach(user =>{
+            user.toString()===idUser;
+            usersInSubject.push(subject._id.toString());
+        });
+        
+    });
+   
+    
+
+}
 export { insertSubject, getSubject, getSubjects, updateSubject, deleteSubject, matriculateSubject, displayListOfUsers };
